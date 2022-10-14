@@ -7,4 +7,5 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - uses: sane-fmt/action@8c6c999fc29839fbe09390c6a97d22341b2f0482
+      - run: echo GITHUB_OUTPUT $GITHUB_OUTPUT
+      # - uses: sane-fmt/action@8c6c999fc29839fbe09390c6a97d22341b2f0482
