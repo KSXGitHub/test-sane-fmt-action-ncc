@@ -10,6 +10,7 @@ jobs:
       - name: Download sane-fmt
         run: |
           curl -L https://github.com/sane-fmt/sane-fmt/releases/download/0.15.2/sane-fmt-x86_64-unknown-linux-gnu > ./sane-fmt
+          chmod +x ./sane-fmt
       - name: Run sane-fmt
         run: |
           echo GITHUB_OUTPUT=$GITHUB_OUTPUT
