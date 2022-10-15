@@ -7,4 +7,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - uses: sane-fmt/action@0.15.2
+      # - uses: sane-fmt/action@0.15.2
+      - id: sample-outputs
+        run: cp sample-output.txt $GITHUB_OUTPUT
+      - name: Inspect outputs
+        run: |
+          echo total ${{ steps.sample-outputs.outputs.total }}
+          echo changed ${{ steps.sample-outputs.outputs.changed }}
+          echo unchanged ${{ steps.sample-outputs.outputs.unchanged }}
