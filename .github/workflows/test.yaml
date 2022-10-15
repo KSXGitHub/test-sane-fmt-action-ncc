@@ -7,4 +7,5 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - uses: sane-fmt/action@0.15.2
+      - id: sane-fmt
+        uses: sane-fmt/action@0.15.2
