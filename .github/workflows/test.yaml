@@ -29,5 +29,8 @@ jobs:
           echo total ${{ steps.sane-fmt.outputs.total }}
           echo changed ${{ steps.sane-fmt.outputs.changed }}
           echo unchanged ${{ steps.sane-fmt.outputs.unchanged }}
+      - name: More summary
+        run: |
+          echo Goodbye >> $GITHUB_STEP_SUMMARY
       # - id: sane-fmt
       #   uses: sane-fmt/action@0.15.2
