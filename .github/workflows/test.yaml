@@ -6,10 +6,5 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # - uses: actions/checkout@v3
-      # - uses: sane-fmt/action@ec5531c135c42cd8ca5c72b2b2c4be3092638ad5
-      - id: set-output
-        name: Set output
-        run: echo 'foo-bar=Hello, World!!' >> $GITHUB_OUTPUT
-      - name: Inspect output
-        run: echo "The output is ${{ steps.set-output.outputs.foo-bar }}"
+      - uses: actions/checkout@v3
+      - uses: sane-fmt/action@0.15.2
