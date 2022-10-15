@@ -1,3 +1,0 @@
-total=11
-changed=5
-unchanged=6
