@@ -11,7 +11,8 @@ jobs:
         run: |
           curl -L https://github.com/sane-fmt/sane-fmt/releases/download/0.15.2/sane-fmt-x86_64-unknown-linux-gnu > ./sane-fmt
           chmod +x ./sane-fmt
-      - name: Run sane-fmt
+      - id: sane-fmt
+        name: Run sane-fmt
         run: |
           echo GITHUB_OUTPUT=$GITHUB_OUTPUT
           echo
@@ -23,5 +24,10 @@ jobs:
           echo
           echo CONTENT:
           cat $GITHUB_OUTPUT
+      - name: Inspect
+        run: |
+          echo total ${{ steps.sane-fmt.outputs.total }}
+          echo changed ${{ steps.sane-fmt.outputs.changed }}
+          echo unchanged ${{ steps.sane-fmt.outputs.unchanged }}
       # - id: sane-fmt
       #   uses: sane-fmt/action@0.15.2
