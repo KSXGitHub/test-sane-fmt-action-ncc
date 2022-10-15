@@ -7,5 +7,20 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - id: sane-fmt
-        uses: sane-fmt/action@0.15.2
+      - name: Download sane-fmt
+        run: |
+          curl -L https://github.com/sane-fmt/sane-fmt/releases/download/0.15.2/sane-fmt-x86_64-unknown-linux-gnu > ./sane-fmt
+      - name: Run sane-fmt
+        run: |
+          echo GITHUB_OUTPUT=$GITHUB_OUTPUT
+          echo
+          echo CONTENT:
+          cat $GITHUB_OUTPUT
+          echo
+          echo Run sane-fmt
+          ./sane-fmt --log-format=github-actions
+          echo
+          echo CONTENT:
+          cat $GITHUB_OUTPUT
+      # - id: sane-fmt
+      #   uses: sane-fmt/action@0.15.2
