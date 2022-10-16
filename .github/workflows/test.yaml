@@ -7,30 +7,39 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - name: Download sane-fmt
-        run: |
-          curl -L https://github.com/sane-fmt/sane-fmt/releases/download/0.15.2/sane-fmt-x86_64-unknown-linux-gnu > ./sane-fmt
-          chmod +x ./sane-fmt
       - id: sane-fmt
-        name: Run sane-fmt
+        uses: sane-fmt/action@0.16.0
+      - name: Inspect outputs
         run: |
-          echo GITHUB_OUTPUT=$GITHUB_OUTPUT
-          echo
-          echo CONTENT:
-          cat $GITHUB_OUTPUT
-          echo
-          echo Run sane-fmt
-          ./sane-fmt --log-format=github-actions
-          echo
-          echo CONTENT:
-          cat $GITHUB_OUTPUT
-      - name: Inspect
-        run: |
+          echo location ${{ steps.sane-fmt.outputs.location }}
+          echo executable-basename ${{ steps.sane-fmt.outputs.executable-basename }}
+          echo executable-path ${{ steps.sane-fmt.outputs.executable-path }}
           echo total ${{ steps.sane-fmt.outputs.total }}
           echo changed ${{ steps.sane-fmt.outputs.changed }}
           echo unchanged ${{ steps.sane-fmt.outputs.unchanged }}
-      - name: More summary
-        run: |
-          echo Goodbye >> $GITHUB_STEP_SUMMARY
+
+      # - name: Download sane-fmt
+      #   run: |
+      #     curl -L https://github.com/sane-fmt/sane-fmt/releases/download/0.15.2/sane-fmt-x86_64-unknown-linux-gnu > ./sane-fmt
+      #     chmod +x ./sane-fmt
       # - id: sane-fmt
-      #   uses: sane-fmt/action@0.15.2
+      #   name: Run sane-fmt
+      #   run: |
+      #     echo GITHUB_OUTPUT=$GITHUB_OUTPUT
+      #     echo
+      #     echo CONTENT:
+      #     cat $GITHUB_OUTPUT
+      #     echo
+      #     echo Run sane-fmt
+      #     ./sane-fmt --log-format=github-actions
+      #     echo
+      #     echo CONTENT:
+      #     cat $GITHUB_OUTPUT
+      # - name: Inspect
+      #   run: |
+      #     echo total ${{ steps.sane-fmt.outputs.total }}
+      #     echo changed ${{ steps.sane-fmt.outputs.changed }}
+      #     echo unchanged ${{ steps.sane-fmt.outputs.unchanged }}
+      # - name: More summary
+      #   run: |
+      #     echo Goodbye >> $GITHUB_STEP_SUMMARY
